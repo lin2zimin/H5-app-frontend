@@ -1,0 +1,62 @@
+.body {
+  border-radius: 10px;
+  height: 100%;
+  margin-bottom: 12px;
+  box-shadow: 0px 0px 4px 0px rgba(166, 94, 94, 0.1);
+  //   background-color: #fff;
+  
+  .header {
+    border-radius: 10px 10px 0 0;
+    height: 40px;
+    display: flex;
+    background-color: #f9f9f9;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 12px;
+    span {
+      color: rgba(0, 0, 0, 0.9);
+    }
+    .date {
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .money {
+      font-size: 14px;
+      
+      span {
+        margin-left: 2px;
+      }
+      img {
+        margin-left: 16px;
+        width: 20px;
+        vertical-align: -6px;
+      }
+    }
+  }
+  :global {
+    .za-cell {
+      // position: static;
+      &:last-child {
+        border-radius: 0 0 10px 10px;
+      }
+      &::after {
+        left: 0;
+      }
+      .za-cell__title {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+  .icon {
+    color: #007fff;
+    // font-size: 22px;
+    vertical-align: -2px;
+    // margin-left: 2px;
+  }
+  .iconTitle {
+    margin-left: 2px;
+  }
+  .content {
+  }
+}
