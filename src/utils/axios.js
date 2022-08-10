@@ -33,7 +33,7 @@ axios.interceptors.response.use(
     const { code, msg, data } = res.data;
     // console.log('data----', data);
     if (typeof data !== 'object') {
-      Toast.show(msg);
+      Toast.show('not an object');
       if (code == 401) {
         Toast.show('请先登录');
         setTimeout(() => (window.location.href = '/login'), 1500);
@@ -46,6 +46,7 @@ axios.interceptors.response.use(
       return Promise.reject(data);
     }
 
+    // if(msg) Toast.show(msg)
     return data;
   },
   (err) => {

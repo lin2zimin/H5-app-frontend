@@ -86,3 +86,7 @@ export const expenseTypes = [
   '其他支出',
 ];
 export const IncomeTypes = ['工资', '奖金', '转账', '理财', '退款','其他收入' ];
+
+// export const handleImgUrl = (url) =>{
+//   if(url ) 
+// }

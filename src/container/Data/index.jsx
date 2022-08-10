@@ -44,11 +44,8 @@ export default function Data() {
   const setPieChart = (data) => {
     if (echarts) {
       let dom = document.getElementById('proportion');
-      console.log(dom);
       myChart = echarts.init(dom);
-      console.log(myChart);
       myChart.setOption({
-  
         tooltip: {
           trigger: 'item',
           formatter: '{a} <br/>{b} : {c} ({d}%)',
@@ -139,11 +136,10 @@ export default function Data() {
               <div className={s.right}>
                 <Progress
                   shape="line"
-                  percent={
-                    (
-                      obj.amount / (obj.paymentType == '1' ? expense : income)
-                    ).toFixed(4) * 100
-                  }
+                  percent={(
+                    (obj.amount / (obj.paymentType == '1' ? expense : income)) 
+                    *100
+                  ).toFixed(2)}
                   // theme={theme}
                   // strokeShape={strokeShape}
                   // strokeWidth={strokeWidth}

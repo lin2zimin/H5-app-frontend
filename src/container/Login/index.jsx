@@ -38,8 +38,9 @@ export default function Login() {
       console.log(res);
     } else {
       const res = await login(userName, pwd);
+      console.log('res11111',res);
       localStorage.setItem('token', res.token);
-      console.log('111111111',localStorage.getItem('token'));
+      // console.log('111111111',localStorage.getItem('token'));
       if(localStorage.getItem('token')) history.push('/home')
       
     }
