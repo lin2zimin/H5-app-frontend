@@ -6,6 +6,7 @@ import Home from '../Home';
 import Login from '../Login';
 import Detail from '../Detail';
 import UserInfo from '../UserInfo';
+import Aboutus from '../User/Aboutus';
 const routes = [
   {
     path: '/',
@@ -39,6 +40,10 @@ const routes = [
     path: '/detail/:id',
     component: Detail,
   },
+  {
+    path:'/aboutus',
+    component:Aboutus
+  }
 ];
 
 export default routes;

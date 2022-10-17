@@ -12,8 +12,8 @@ import CustomIcon from '@/components/CustomIcon';
 import type from 'postcss-pxtorem/lib/type';
 import dayjs from 'dayjs';
 import {addBill} from '@/server/bill'
+import { allTypes } from '../../utils';
 export default function Home() {
-  const [billType, setBillType] = useState('all');
   const [date, setDate] = useState(dayjs('2022-07').format('YYYY-MM'));
   const [list, setList] = useState([]);
   const [refreshState, setRefreshState] = useState(REFRESH_STATE.normal);
@@ -82,8 +82,8 @@ export default function Home() {
           </span>
         </div>
         <div className={styles.typeWrap}>
-          <div onClick={() => toggle(typeRef)}>全部类型</div>
-          <div onClick={() => toggle(dateRef)}>日期</div>
+          <div onClick={() => toggle(typeRef)}>{ typeID == 'all' ?'全部类型': allTypes[Number(typeID)-1]}</div>
+          <div onClick={() => toggle(dateRef)}>{date}</div>
         </div>
       </div>
       <div className={styles.contentWrap}>

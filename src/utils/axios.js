@@ -11,8 +11,9 @@ const MODE = import.meta.env.MODE;
 // const navigate = useNavigate();
 //defaults属性 设置axios默认配置
 // 给axios请求设置默认url 开发环境还是生产环境
+// 给axios请求设置默认url 开发环境还是生产环境
 axios.defaults.baseURL =
-  MODE === 'development' ? '/api' : 'http://api.chennick.wang';
+  MODE === 'development' ? '/api' : '线上服务器地址';
 // 设置请求为 ajax（异步）请求
 axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest';
 //设置默认请求头的content-type属性， 文件上传需要变更
@@ -31,16 +32,11 @@ axios.interceptors.request.use((req) => {
 axios.interceptors.response.use(
   (res) => {
     const { code, msg, data } = res.data;
-    // console.log('data----', data);
-    if (typeof data !== 'object') {
-      Toast.show('not an object');
-      if (code == 401) {
+    if (code == 401) {
         Toast.show('请先登录');
         setTimeout(() => (window.location.href = '/login'), 1500);
-      }
-      return Promise.reject(res);
     }
-
+    
     if (code != 200) {
       if (msg) Toast.show(msg);
       return Promise.reject(data);

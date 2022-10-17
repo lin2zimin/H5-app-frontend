@@ -3,8 +3,9 @@ import { NavBar, Icon, Button, Input, FilePicker, Toast } from 'zarm';
 import s from './style.module.less';
 import { useHistory } from 'react-router-dom';
 // import axios from 'axios';
-import axios from '@/utils/axios';
+import axios from 'axios';
 import { editInfo, getInfo } from '../../server/user';
+import { transUrl } from '../../utils';
 // import { handleImgUrl } from '../../utils';
 
 
@@ -20,7 +21,7 @@ export default function index() {
   useEffect(() => {
     getInfo().then((res) => {
       setUserInfo(res);
-      setImg(res.avatar);
+      setImg(transUrl(res.avatar));
       setInput(res.signature);
       setNcName(res.nickName)
     });
@@ -28,14 +29,12 @@ export default function index() {
 
   const handleSelect = (file) => {
     // console.log('fucking file is', file);
-    if (file && file.file.size > 200 * 1024) {
-      Toast.show('上传头像不得超过200kb！');
+    if (file && file.file.size > 2400 * 1024) {
+      Toast.show('上传头像不得超过2.5M！');
       return;
     }
     let formData = new FormData();
     formData.append('file', file.file);
-    console.log(formData);
-
     axios({
       method: 'post',
       url: `/upload`,
@@ -45,10 +44,11 @@ export default function index() {
         Authorization: localStorage.getItem('token'),
       },
     })
-      .then(({ url }) => {
-        setImg(url);
+      .then((res) => {
+        console.log('ressss'+ res)
+        setImg(transUrl(res));
       })
-      .catch(console.log);
+      .catch(err => console.log('Error' + err ));
   };
 
   const Submit = () => {
@@ -59,9 +59,15 @@ export default function index() {
       signature: input,
     };
     editInfo(params).then((res) => {
-      console.log(res);
+      if(res =='success'){
+        Toast.show('修改成功！')
+      }else{
+        Toast.show('有点问题，建议再看看')
+      }
     });
   };
+
+  console.log(img)
   return (
     <div className={s.wrap}>
       <NavBar
@@ -78,7 +84,7 @@ export default function index() {
       <div className={s.content}>
         <div className={s.title}>个人资料</div>
         <div className={s.nickName}>
-         <span>修改昵称</span> 
+         <span className={s.purpleRound}>修改昵称</span> 
           <Input
             style={{ marginTop: '14px', marginLeft:'8px'}}
             // ref={focusInput}
@@ -90,14 +96,15 @@ export default function index() {
         </div>
         <div
           style={{
-            fontSize: '18px',
+            fontSize: '16px',
             marginTop: '14px',
             fontWeight: '500px',
             marginBottom: '12px',
-            fontWeight:  '600',
+            // fontWeight:  '600',
           }}
         >
-          头像
+          <span className={s.purpleRound}>头像</span>
+          
         </div>
         <div className={s.avatar}>
           <span className={s.img}>
@@ -105,7 +112,7 @@ export default function index() {
           </span>
 
           <div className={s.detail}>
-            <span>支持 jpg、png、jpeg 格式大小 200KB 以内的图片</span>
+            <span>支持 jpg、png、jpeg 格式大小1.8mb以内的图片</span>
             <span>
               <FilePicker onChange={handleSelect} accept="image/*">
                 <Button className={s.upload} theme="primary" size="xs">
@@ -123,7 +130,7 @@ export default function index() {
               src="//s.yezgea02.com/1615973630132/geqian.png"
               alt=""
             />
-          <span>个性签名</span>
+          <span className={s.purpleRound}>个性签名</span>
           </div>
           
           <Input

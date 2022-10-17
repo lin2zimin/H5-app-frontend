@@ -1,5 +1,6 @@
 import axios from './axios';
 
+const MODE = import.meta.env.MODE
 export const get = axios.get;
 
 export const post = axios.post;
@@ -73,6 +74,19 @@ export const LOAD_STATE = {
   complete: 5, // 加载完成（无新数据）
 };
 
+export const allTypes = [
+  '餐饮',
+  '服饰',
+  '交通',
+  '日用',
+  '购物',
+  '学习',
+  '医疗',
+  '旅行',
+  '人情',
+  '其他支出',
+  '工资', '奖金', '转账', '理财', '退款','其他收入'
+]
 export const expenseTypes = [
   '餐饮',
   '服饰',
@@ -87,6 +101,8 @@ export const expenseTypes = [
 ];
 export const IncomeTypes = ['工资', '奖金', '转账', '理财', '退款','其他收入' ];
 
-// export const handleImgUrl = (url) =>{
-//   if(url ) 
-// }
+export const transUrl = (url) => {
+   if(!url) return;
+   if(url.includes('http')) return url;
+   return `${MODE == 'development' ? 'http://127.0.0.1:7001' : '线上'}${url}`
+}

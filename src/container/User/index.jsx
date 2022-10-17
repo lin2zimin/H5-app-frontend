@@ -15,13 +15,16 @@ export default function User() {
     //   setSign(res.signature);
     // });
     const res = await getInfo();
-    
     console.log('res', res);
     setImg(res.avatar);
     setSign(res.signature);
     setNcName(res.nickName)
   }, []);
-  console.log(img);
+  
+  function logout() {
+    localStorage.clear('token');
+    history.push('/login');
+  }
   return (
     <div className={s.wrap}>
       <div className={s.header}>
@@ -70,7 +73,7 @@ export default function User() {
         <Cell
           hasArrow
           title="关于我们"
-          onClick={() => history.push('/about')}
+          onClick={() => history.push('/aboutus')}
           style={{ borderRadius: '10px' }}
           icon={
             <img
@@ -83,7 +86,7 @@ export default function User() {
       </div>
 
       <div className={s.btn}>
-        <Button block={true} theme="danger">
+        <Button block={true} theme="danger" onClick={logout}>
           退出登录
         </Button>
       </div>
