@@ -13,7 +13,7 @@ const MODE = import.meta.env.MODE;
 // 给axios请求设置默认url 开发环境还是生产环境
 // 给axios请求设置默认url 开发环境还是生产环境
 axios.defaults.baseURL =
-  MODE === 'development' ? '/api' : 'http://120.77.155.183:7001';
+  MODE === 'development' ? '/api' : 'http://120.77.155.183:7001/api';
 // 设置请求为 ajax（异步）请求
 axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest';
 //设置默认请求头的content-type属性， 文件上传需要变更
