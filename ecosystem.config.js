@@ -12,7 +12,7 @@ module.exports = {
             ref:'origin/master',
             repo:'https://github.com/lin2zimin/H5-app-frontend.git',
             path:'/workspace/H5-app-frontend',
-            'post-deploy':'git reset --hard && git checkout master && git pull && npm i --production=false && npm run build:release && pm2 startOrReload ecosystem.config.js',
+            'post-deploy':'git reset --hard && git checkout master && git pull && npm i --production=false --force && npm run build:release && pm2 startOrReload ecosystem.config.js',
             env:{
                 NODE_ENV:'production'
             }
