@@ -104,5 +104,5 @@ export const IncomeTypes = ['工资', '奖金', '转账', '理财', '退款','�
 export const transUrl = (url) => {
    if(!url) return;
    if(url.includes('http')) return url;
-   return `${MODE == 'development' ? 'http://127.0.0.1:7001' : '线上'}${url}`
+   return `${MODE == 'development' ? 'http://127.0.0.1:7001' : 'http://120.77.155.183:7001'}${url}`
 }

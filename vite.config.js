@@ -34,7 +34,8 @@ export default defineConfig({
         // 代理前请求为/api/userInfo，
         // 代理后为http://api.chennick.wang/api/userInfo
         // target: 'http://10.10.114.160:7001',
-        target:'http://127.0.0.1:7001 ',
+        target:'http://120.77.155.183:7001',
+        // target:'http://127.0.0.1:7001 ',
         changeOrigin: true,
         // 匹配到/api时，把/api写为空
         //这里 写具体请求不写/api，由axios配置url同一加上/api
